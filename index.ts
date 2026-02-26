@@ -110,3 +110,17 @@ program
 program.command("add <a> <b>").description("Add two numbers").action((a: string, b: string) => {
     console.log(`\x1b[32mSum:\x1b[0m ${math.add(Validator.number(a), Validator.number(b))}`);
 });
+
+program.command("sub <a> <b>").description("Subtract two numbers").action((a: string, b: string) => {
+    console.log(`\x1b[32mSubtraction result:\x1b[0m ${math.sub(Validator.number(a), Validator.number(b))}`);
+});
+
+program.command("mul <a> <b>").description("Multiply two numbers").action((a: string, b: string) => {
+    console.log(`\x1b[32mMultiplication result:\x1b[0m ${math.mul(Validator.number(a), Validator.number(b))}`);
+});
+
+program.command("div <a> <b>").description("Divide two numbers").action((a: string, b: string) => {
+    try {
+        console.log(`\x1b[32mDivision result:\x1b[0m ${math.div(Validator.number(a), Validator.number(b))}`);
+    } catch (e: any) {
+        console.log(`\x1b[31mError:\x1b[0m ${e.message}`);
