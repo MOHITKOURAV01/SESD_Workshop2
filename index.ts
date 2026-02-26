@@ -68,3 +68,17 @@ class ApiService {
     }
     async getWeather(city: string) {
         const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=en&format=json`);
+        if (!geoRes.ok) throw new Error("Geocoding API request failed.");
+        const geoData = await geoRes.json();
+        if (!geoData.results || geoData.results.length === 0) {
+            throw new Error(`City "${city}" not found.`);
+        }
+
+        const { latitude, longitude, name } = geoData.results[0];
+        const weatherRes = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true`);
+        if (!weatherRes.ok) throw new Error("Weather API request failed.");
+        const weatherData = await weatherRes.json();
+        return { city: name, temp: weatherData.current_weather.temperature, wind: weatherData.current_weather.windspeed };
+    }
+    async getCatFact() {
+        const res = await fetch("https://catfact.ninja/fact");
