@@ -138,3 +138,17 @@ program.command("pow <a> <b>").description("Calculate 'a' raised to the power of
 program.command("sqrt <n>").description("Calculate square root").action((n: string) => {
     console.log(`\x1b[32mSquare root:\x1b[0m ${math.sqrt(Validator.number(n))}`);
 });
+
+program.command("fact <n>").description("Calculate factorial").action((n: string) => {
+    console.log(`\x1b[32mFactorial:\x1b[0m ${math.fact(Validator.number(n))}`);
+});
+
+program.command("perc <p> <t>").description("Calculate percentage p of t").action((p: string, t: string) => {
+    console.log(`\x1b[32mPercentage:\x1b[0m ${math.perc(Validator.number(p), Validator.number(t)).toFixed(2)}%`);
+});
+
+program.command("is-even <n>").description("Check if numeric value is even").action((n: string) => {
+    console.log(`\x1b[32m${n} is:\x1b[0m ${math.isEven(Validator.number(n)) ? "Even" : "Odd"}`);
+});
+
+// Misc / System Commands
