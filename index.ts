@@ -124,3 +124,17 @@ program.command("div <a> <b>").description("Divide two numbers").action((a: stri
         console.log(`\x1b[32mDivision result:\x1b[0m ${math.div(Validator.number(a), Validator.number(b))}`);
     } catch (e: any) {
         console.log(`\x1b[31mError:\x1b[0m ${e.message}`);
+    }
+});
+
+program.command("mod <a> <b>").description("Find the remainder of division").action((a: string, b: string) => {
+    console.log(`\x1b[32mRemainder:\x1b[0m ${Validator.number(a) % Validator.number(b)}`);
+});
+
+program.command("pow <a> <b>").description("Calculate 'a' raised to the power of 'b'").action((a: string, b: string) => {
+    console.log(`\x1b[32mPower:\x1b[0m ${math.pow(Validator.number(a), Validator.number(b))}`);
+});
+
+program.command("sqrt <n>").description("Calculate square root").action((n: string) => {
+    console.log(`\x1b[32mSquare root:\x1b[0m ${math.sqrt(Validator.number(n))}`);
+});
