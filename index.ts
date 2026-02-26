@@ -250,3 +250,16 @@ program.command("weather <city>")
         } catch (error: any) {
             console.error(`\x1b[31mError:\x1b[0m ${error.message}`);
         }
+    });
+
+program.command("cat-fact")
+    .description("Fetch a random interesting cat fact")
+    .action(async () => {
+        try {
+            console.log(`\x1b[33mFetching a random cat fact...\x1b[0m`);
+            const data = await api.getCatFact();
+            console.log(`\x1b[35mFact:\x1b[0m ${data.fact}`);
+        } catch (error: any) {
+            console.error(`\x1b[31mError:\x1b[0m ${error.message}`);
+        }
+    });
