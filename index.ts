@@ -208,3 +208,17 @@ program.command("palindrome <str>").description("Check if string is a palindrome
 
 // API Integration Commands (3 APIs)
 program.command("github <username>")
+    .description("Fetch public GitHub user info")
+    .option("-r, --repos", "Show public repos count as well")
+    .action(async (username: string, options: any) => {
+        try {
+            console.log(`\x1b[33mFetching GitHub data for "${username}"...\x1b[0m`);
+            const data = await api.getGithubUser(username);
+
+            console.log(`\x1b[32mName:\x1b[0m ${data.name || 'N/A'}`);
+            console.log(`\x1b[32mFollowers:\x1b[0m ${data.followers}`);
+            if (options.repos) {
+                console.log(`\x1b[32mPublic Repositories:\x1b[0m ${data.public_repos}`);
+            }
+        } catch (error: any) {
+            console.error(`\x1b[31mError:\x1b[0m ${error.message}`);
