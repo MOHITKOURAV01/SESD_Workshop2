@@ -166,3 +166,16 @@ program.command("now").description("Display current time").action(() => {
 
 program.command("today").description("Display today's date").action(() => {
     console.log(`\x1b[36mToday's Date:\x1b[0m ${new Date().toLocaleDateString()}`);
+});
+
+program.command("greet <name>").description("Greet a user").action((name: string) => {
+    console.log(`\x1b[32m${misc.greet(name)}\x1b[0m`);
+});
+
+program.command("fileinfo <filename>").description("Display file size and presence").action((filename: string) => {
+    try {
+        console.log(`\x1b[36mFile Size of ${filename}:\x1b[0m ${misc.getFileSize(filename)} bytes`);
+    } catch (e: any) {
+        console.error(`\x1b[31mError:\x1b[0m ${e.message}`);
+    }
+});
