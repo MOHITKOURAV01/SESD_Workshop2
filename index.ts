@@ -152,3 +152,17 @@ program.command("is-even <n>").description("Check if numeric value is even").act
 });
 
 // Misc / System Commands
+program.command("rand <n>").description("Generate a random number up to max n").action((n: string) => {
+    console.log(`\x1b[36mRandom number:\x1b[0m ${Math.floor(Math.random() * Validator.number(n))}`);
+});
+
+program.command("area-circle <r>").description("Calculate area of a circle given radius r").action((r: string) => {
+    console.log(`\x1b[36mArea of circle:\x1b[0m ${(Math.PI * Math.pow(Validator.number(r), 2)).toFixed(2)}`);
+});
+
+program.command("now").description("Display current time").action(() => {
+    console.log(`\x1b[36mCurrent Time:\x1b[0m ${new Date().toLocaleTimeString()}`);
+});
+
+program.command("today").description("Display today's date").action(() => {
+    console.log(`\x1b[36mToday's Date:\x1b[0m ${new Date().toLocaleDateString()}`);
