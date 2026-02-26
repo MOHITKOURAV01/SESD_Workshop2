@@ -54,3 +54,17 @@ class MiscUtils {
         return fs.statSync(filename).size;
     }
 }
+
+class ApiService {
+    async getGithubUser(username: string) {
+        const response = await fetch(`https://api.github.com/users/${username}`);
+        if (!response.ok) throw new Error("User not found or API limits exceeded.");
+        return await response.json();
+    }
+    async getQuote() {
+        const res = await fetch("https://dummyjson.com/quotes/random");
+        if (!res.ok) throw new Error("Could not fetch quote.");
+        return await res.json();
+    }
+    async getWeather(city: string) {
+        const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1&language=en&format=json`);
