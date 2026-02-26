@@ -82,3 +82,17 @@ class ApiService {
     }
     async getCatFact() {
         const res = await fetch("https://catfact.ninja/fact");
+        if (!res.ok) throw new Error("Could not fetch cat fact.");
+        return await res.json();
+    }
+    async getNationality(name: string) {
+        const res = await fetch(`https://api.nationalize.io/?name=${name}`);
+        if (!res.ok) throw new Error("API request failed.");
+        return await res.json();
+    }
+}
+
+// Instantiate Objects
+const math = new MathUtils();
+const text = new TextUtils();
+const misc = new MiscUtils();
