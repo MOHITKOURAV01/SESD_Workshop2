@@ -179,3 +179,18 @@ program.command("fileinfo <filename>").description("Display file size and presen
         console.error(`\x1b[31mError:\x1b[0m ${e.message}`);
     }
 });
+
+// Text / String Commands
+program.command("rev <str>").description("Reverse a string").action((s: string) => {
+    console.log(`\x1b[35mReversed:\x1b[0m ${text.rev(s)}`);
+});
+
+program.command("upper <str>").description("Convert string to uppercase").action((s: string) => {
+    console.log(`\x1b[35mUppercase:\x1b[0m ${text.upper(s)}`);
+});
+
+program.command("lower <str>").description("Convert string to lowercase").action((s: string) => {
+    console.log(`\x1b[35mLowercase:\x1b[0m ${text.lower(s)}`);
+});
+
+program.command("len <str>").description("Get length of a string").action((s: string) => {
