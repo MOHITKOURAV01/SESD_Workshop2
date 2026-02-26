@@ -236,3 +236,17 @@ program.command("quote")
         } catch (error: any) {
             console.error(`\x1b[31mError:\x1b[0m ${error.message}`);
         }
+    });
+
+program.command("weather <city>")
+    .description("Get current weather for a city")
+    .action(async (city: string) => {
+        try {
+            console.log(`\x1b[33mFetching current weather for ${city}...\x1b[0m`);
+            const data = await api.getWeather(city);
+            console.log(`\x1b[32mWeather in ${data.city}:\x1b[0m`);
+            console.log(`\x1b[36mTemperature:\x1b[0m ${data.temp}°C`);
+            console.log(`\x1b[36mWind Speed:\x1b[0m ${data.wind} km/h`);
+        } catch (error: any) {
+            console.error(`\x1b[31mError:\x1b[0m ${error.message}`);
+        }
