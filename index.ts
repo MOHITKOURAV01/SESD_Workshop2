@@ -40,3 +40,17 @@ class TextUtils {
     lower(str: string) { return str.toLowerCase(); }
     rev(str: string) { return str.split("").reverse().join(""); }
     len(str: string) { return str.length; }
+    countWords(str: string) { return str.trim().split(/\s+/).length; }
+    isPalindrome(str: string) {
+        const cln = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+        return cln === cln.split('').reverse().join('');
+    }
+}
+
+class MiscUtils {
+    greet(name: string) { return `Hello ${name}, welcome to our CLI!`; }
+    getFileSize(filename: string) {
+        if (!fs.existsSync(filename)) throw new Error("File not found!");
+        return fs.statSync(filename).size;
+    }
+}
