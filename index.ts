@@ -194,3 +194,17 @@ program.command("lower <str>").description("Convert string to lowercase").action
 });
 
 program.command("len <str>").description("Get length of a string").action((s: string) => {
+    console.log(`\x1b[35mCharacter count:\x1b[0m ${text.len(s)}`);
+});
+
+program.command("count-words <str>").description("Count words in a string").action((s: string) => {
+    console.log(`\x1b[35mWord Count:\x1b[0m ${text.countWords(s)}`);
+});
+
+program.command("palindrome <str>").description("Check if string is a palindrome").action((s: string) => {
+    const isPal = text.isPalindrome(s);
+    console.log(`\x1b[35mIs Palindrome?\x1b[0m ${isPal ? "Yes" : "No"}`);
+});
+
+// API Integration Commands (3 APIs)
+program.command("github <username>")
