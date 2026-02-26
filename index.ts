@@ -278,3 +278,8 @@ program.command("guess-nation <name>")
                 console.log(`\x1b[33mWarning:\x1b[0m Could not predict nationality for name: ${name}`);
             }
         } catch (error: any) {
+            console.error(`\x1b[31mError:\x1b[0m ${error.message}`);
+        }
+    });
+
+program.parse();
