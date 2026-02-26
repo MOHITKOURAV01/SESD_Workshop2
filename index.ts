@@ -222,3 +222,17 @@ program.command("github <username>")
             }
         } catch (error: any) {
             console.error(`\x1b[31mError:\x1b[0m ${error.message}`);
+        }
+    });
+
+program.command("quote")
+    .description("Fetch a random inspiring quote")
+    .action(async () => {
+        try {
+            console.log(`\x1b[33mFetching a random quote...\x1b[0m`);
+            const data = await api.getQuote();
+            console.log(`\x1b[36m"${data.quote}"\x1b[0m`);
+            console.log(`\x1b[32m- ${data.author}\x1b[0m`);
+        } catch (error: any) {
+            console.error(`\x1b[31mError:\x1b[0m ${error.message}`);
+        }
