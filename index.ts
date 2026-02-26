@@ -96,3 +96,17 @@ class ApiService {
 const math = new MathUtils();
 const text = new TextUtils();
 const misc = new MiscUtils();
+const api = new ApiService();
+
+
+// --- CLI COMMANDS (Keeping the original format) --- //
+
+program
+    .name("utility-cli")
+    .description("A clean 25 functional CLI with OOP, APIs and Colors")
+    .version("4.0.0");
+
+// Math Commands
+program.command("add <a> <b>").description("Add two numbers").action((a: string, b: string) => {
+    console.log(`\x1b[32mSum:\x1b[0m ${math.add(Validator.number(a), Validator.number(b))}`);
+});
