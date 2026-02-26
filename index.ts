@@ -263,3 +263,18 @@ program.command("cat-fact")
             console.error(`\x1b[31mError:\x1b[0m ${error.message}`);
         }
     });
+
+program.command("guess-nation <name>")
+    .description("Predict the likely nationality based on a given name")
+    .action(async (name: string) => {
+        try {
+            console.log(`\x1b[33mPredicting nationality for name: ${name}...\x1b[0m`);
+            const data = await api.getNationality(name);
+            if (data.country && data.country.length > 0) {
+                const likelyCountry = data.country[0].country_id;
+                const probability = (data.country[0].probability * 100).toFixed(2);
+                console.log(`\x1b[32mMost likely Country ID for ${name}:\x1b[0m ${likelyCountry} (${probability}%)`);
+            } else {
+                console.log(`\x1b[33mWarning:\x1b[0m Could not predict nationality for name: ${name}`);
+            }
+        } catch (error: any) {
